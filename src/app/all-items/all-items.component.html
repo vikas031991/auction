@@ -1,0 +1,75 @@
+<!-- <a routerLink="/item">Item</a> -->
+<div class="clearfix section">
+  <div class="clearfix">Select Category</div>
+  <select [(ngModel)]="selectedValue" (change)="selectedCategory();">
+    <option *ngFor="let option of categories" [ngValue]="option">{{option}}</option>
+  </select>
+  <div class="clearfix newAuction" (click)="showForm = true">Create New Auction</div>
+</div>
+<div class="openPop" *ngIf="showForm">
+  <form [formGroup]="newAuction" class="clearfix">
+    <caption>New Auction</caption>
+    <div>
+      <label class="col-md-3 col-sm-3">Item Name</label>
+      <input class="col-md-9 col-sm-9" type="text" formControlName="itemName">
+    </div>
+    <div>
+      <label class="col-md-3 col-sm-3">Item Description</label>
+      <textarea class="col-md-9 col-sm-9" type="text" formControlName="itemDescription"></textarea>
+    </div>
+    <div>
+      <label class="col-md-3 col-sm-3">Start Time</label>
+      <input class="col-md-9 col-sm-9" type="datetime-local" formControlName="startTime">
+    </div>
+    <div>
+      <label class="col-md-3 col-sm-3">End Time</label>
+      <input class="col-md-9 col-sm-9" type="datetime-local" formControlName="endTime">
+    </div>
+    <div>
+      <label class="col-md-3 col-sm-3">Bid Amount</label>
+      <input class="col-md-9 col-sm-9" type="text" formControlName="bidAmount">
+    </div>
+    <div>
+      <label class="col-md-3 col-sm-3">Current Bid</label>
+      <input class="col-md-9 col-sm-9" type="text" formControlName="currentBid">
+    </div>
+    <div>
+      <label class="col-md-3 col-sm-3">Item Image</label>
+      <input class="col-md-9 col-sm-9" type="file" id="imgData" formControlName="itemImage">
+    </div>
+    <button type="submit" class="right" (click)="createAuction();">Submit</button>
+    <button type="reset" class="right" (click)="showForm=false;">Cancel</button>
+  </form>
+</div>
+<table *ngIf="selectedValue !== 'All Items with Images'">
+  <tr class="row">
+    <!-- <th class="col-md-2 col-sm-2"></th> -->
+    <th class="col-md-2 col-sm-2">Item Name</th>
+    <th class="col-md-3 col-sm-3">Item Description</th>
+    <th class="col-md-2 col-sm-2">Bid Amount<span class="right" (class)="!sortBy?'rotate180':''" (click)="sortFunction('bidAmount')"> Sort </span></th>
+    <th class="col-md-2 col-sm-2">Current Bid<span class="right" (class)="!sortBy?'rotate180':''" (click)="sortFunction('currentBid')"> Sort </span></th>
+    <th class="col-md-2 col-sm-2" *ngIf="selectedValue === 'Upcoming Auction'">Start Time</th>
+    <th class="col-md-2 col-sm-2" *ngIf="selectedValue === 'Currently Active Auction'">End Time</th>
+    <th class="col-md-1 col-sm-1"></th>
+  </tr>
+  <tr  class="row" *ngFor="let item of allItems">
+    <!-- <td class="col-md-2 col-sm-2"><img [src]="item.itemImage"></td> -->
+    <td class="col-md-2 col-sm-2"><a [routerLink]="['/item', item.id]"><span (click)="selectedItem(item);">{{item.itemName}}</span></a></td>
+    <td class="col-md-3 col-sm-3">{{item.itemDescription}}</td>
+    <td class="col-md-2 col-sm-2">{{item.bidAmount}}</td>
+    <td class="col-md-2 col-sm-2">{{item.currentBid}}</td>
+    <td class="col-md-2 col-sm-2" *ngIf="selectedValue === 'Upcoming Auction'">{{item.startTime}}</td>
+    <td class="col-md-2 col-sm-2" *ngIf="selectedValue === 'Currently Active Auction'">{{item.endTime}}</td>
+    <td class="col-md-1 col-sm-1"><span class="delete" (click)="deleteItem(item.id)">Delete</span></td>
+  </tr>
+</table>
+<table *ngIf="selectedValue === 'All Items with Images'">
+    <tr class="row">
+      <th class="col-md-2 col-sm-2"></th>
+      <th class="col-md-2 col-sm-2">Item Name</th>
+    </tr>
+    <tr  class="row" *ngFor="let item of allItems">
+      <td class="col-md-2 col-sm-2"><img [src]="item.itemImage"></td>
+      <td class="col-md-2 col-sm-2"><a [routerLink]="['/item', item.id]"><span (click)="selectedItem(item);">{{item.itemName}}</span></a></td>
+    </tr>
+  </table>

@@ -1,0 +1,39 @@
+<div class="clearfix">
+  <nav class="navigation">
+  <a routerLink="/">Go to Home</a>
+  <div class="newAuction" (click)="showForm = true">Post a Bid</div>
+  </nav>
+  <div class="row item-data">
+    <div class="col-md-1 col-sm-1"><img [src]="itemData?.itemImage"></div>
+    <div class="col-md-11 col-sm-11">
+      <div class="col-md-12 col-sm-12"><b>Item: </b>{{itemData?.itemName}}</div>
+      <div class="col-md-12 col-sm-12"><b>Description: </b>{{itemData?.itemDescription}}</div>
+      <div class="col-md-12 col-sm-12"><b>Bid Amount: </b>{{itemData?.bidAmount}}</div>
+      <div class="col-md-12 col-sm-12"><b>Current Bid Amount: </b>{{itemData?.currentBid}}</div>
+      <div class="col-md-12 col-sm-12"><b>Start Time: </b>{{itemData?.startTime}}</div>
+      <div class="col-md-12 col-sm-12"><b>End Time: </b>{{itemData?.endTime}}</div>
+    </div>
+  </div>
+  <div class="openPop" *ngIf="showForm">
+    <form [formGroup]="newBid" class="clearfix">
+      <caption>Post a Bid</caption>
+      <div class="clearfix">
+        <label class="col-md-3 col-sm-3">Name:</label>
+        <input class="col-md-9 col-sm-9" type="text" formControlName="name">
+      </div>
+      <div class="clearfix">
+        <label class="col-md-3 col-sm-3">Email ID:</label>
+        <input class="col-md-9 col-sm-9" type="text" formControlName="email" email="true">
+        <span  *ngIf="newBid.hasError('email', 'email')" style="color:red;">
+            Please enter the correct email or valid email.
+        </span>
+      </div>
+      <div class="clearfix">
+        <label class="col-md-3 col-sm-3">Bid Amount:</label>
+        <input class="col-md-9 col-sm-9" type="text" formControlName="bidAmount">
+      </div>
+      <button class="right" type="submit" (click)="postBid();">Submit</button>
+      <button type="reset" class="right" (click)="showForm=false;">Cancel</button>
+    </form>
+  </div>
+</div>

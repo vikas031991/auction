@@ -1,1 +1,140 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+$black: #000000;
+$lightgrey: #cccccc;
+$white: #ffffff;
+
+table{
+    margin: 10px 0;
+    width: 100%;
+    th{
+        background: $black;
+        color: $white;
+        padding: 10px 0;
+        text-align: center;
+        border: 1px solid $lightgrey;
+        span{
+            cursor: pointer;
+            color: #ccc;
+        }
+        span:hover{
+            color: $white;
+        }
+    }
+    td{
+        border: 1px solid $black;
+    }
+    .rotate180{
+        transform: rotate(180deg);
+        transition: all 0.5s ease-in-out;
+    }
+    .right{
+        float: right;
+    }
+    .delete{
+        cursor: pointer;
+        color: $lightgrey;
+        font-weight: 600;
+    }
+    .delete:hover{
+        color: $black;
+    }
+    img{
+        width: 100%;
+        height: 150px;
+    }
+}
+body{
+    padding: 0 10px;
+    background: #eee;
+    .row{
+        margin: 0;
+    }
+}
+form{
+    border: 1px solid $black;
+    background: $lightgrey;
+    padding: 10px;
+    max-width: 500px;
+    font-size: 14px;
+    margin: 0 auto;
+    transform: translate(10%, 50%);
+    border-radius: 5px; 
+    input, textarea{
+        // max-width: 200px !important;
+        padding: 5px;
+        outline: none;
+    }
+    .right{
+        float: right;
+    }
+    caption{
+        color: #000;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+        font-size: 16px;
+    }
+    div{
+        margin: 5px 0;
+    }
+}
+.openPop{
+    top: 0;
+    background: #00000075;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+}
+.navigation{
+    padding: 0 10px;
+}
+.section, .navigation{
+    margin-bottom: 10px;
+    background: #929292;
+    color: $white;
+    div{
+        display:inline-block;
+        margin: 0 10px;   
+    }
+    .newAuction{
+        line-height: 3;
+        padding: 0 10px;
+    }
+    .newAuction:hover{
+        cursor: pointer;
+        background: $lightgrey;
+        color: #000000;
+        font-weight: 600;
+    }
+    select{
+        height: 35px;
+        outline: none;
+        font-size: 14px;
+    }
+    a{
+        color: #000;
+        font-weight: 600;
+    }
+}
+button{
+    margin: 5px;
+    background: #ffffff;
+    font-weight: 600;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+button:hover{
+    border: 1px solid #fff;
+    color: #fff;
+    background: #000;
+    cursor: pointer;
+}
+.item-data{
+    img{
+        height: 150px;
+    }
+}
