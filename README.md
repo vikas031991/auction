@@ -1,10 +1,12 @@
-#After clone
-Need to install node modules(dependencies).
-npm install
 
 # Auction
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+
+## After clone
+
+Need to install node modules(dependencies).
+npm install
 
 ## Development server
 
